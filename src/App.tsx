@@ -1,26 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import toMilliseconds from "@sindresorhus/to-milliseconds";
+
+import { Clock } from "./components/Clock";
 
 const App: React.FC = () => {
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+
+  const [duration, setDuration] = useState<number | null>(null);
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    setDuration(toMilliseconds({ hours, minutes, seconds }));
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="hours">Hours</label>
+          <input
+            type="number"
+            name="hours"
+            value={hours}
+            onChange={e => setHours(Number(e.target.value))}
+          />
+        </div>
+        <div>
+          <label htmlFor="minutes">Minutes</label>
+          <input
+            type="number"
+            name="minutes"
+            value={minutes}
+            onChange={e => setMinutes(Number(e.target.value))}
+          />
+        </div>
+        <div>
+          <label htmlFor="seconds">Seconds</label>
+          <input
+            type="number"
+            name="seconds"
+            value={seconds}
+            onChange={e => setSeconds(Number(e.target.value))}
+          />
+        </div>
+
+        <button type="submit">Start Countdown</button>
+      </form>
+
+      {duration ? <Clock duration={duration} /> : null}
     </div>
   );
-}
+};
 
 export default App;
