@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import toMilliseconds from "@sindresorhus/to-milliseconds";
 
 import { Clock } from "./components/Clock";
@@ -24,6 +24,7 @@ const App: React.FC = () => {
           <input
             type="number"
             name="hours"
+            min="0"
             value={hours}
             onChange={e => setHours(Number(e.target.value))}
           />
@@ -33,6 +34,7 @@ const App: React.FC = () => {
           <input
             type="number"
             name="minutes"
+            min="0"
             value={minutes}
             onChange={e => setMinutes(Number(e.target.value))}
           />
@@ -42,6 +44,7 @@ const App: React.FC = () => {
           <input
             type="number"
             name="seconds"
+            min="0"
             value={seconds}
             onChange={e => setSeconds(Number(e.target.value))}
           />
