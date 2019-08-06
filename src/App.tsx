@@ -53,7 +53,12 @@ const App: React.FC = () => {
         <button type="submit">Start Countdown</button>
       </form>
 
-      {duration ? <Clock duration={duration} /> : null}
+      {duration ? (
+        <>
+          <Clock duration={duration} />
+          <button onClick={() => setDuration(null)}>Cancel</button>
+        </>
+      ) : null}
     </div>
   );
 };

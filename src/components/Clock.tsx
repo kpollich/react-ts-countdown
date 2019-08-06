@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import parseMs, { Parsed } from "parse-ms";
+import parseMs from "parse-ms";
 import { padParsedMsValues } from "../utils/pad-parsed-ms-values";
 
 /**
