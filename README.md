@@ -2,6 +2,8 @@
 
 Input hours, minutes, and seconds and get an alert when the countdown completes. Built with React Hooks and TypeScript. Bootstrapped with [create-react-app](https://github.com/facebook/create-react-app)
 
+See live demo at: https://react-ts-countdown.netlify.com/
+
 ## Installation
 
 Clone the repo:
