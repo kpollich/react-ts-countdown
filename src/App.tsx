@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import toMilliseconds from "@sindresorhus/to-milliseconds";
+import { Form, Container, Header, Button } from "semantic-ui-react";
 
 import { Clock } from "./components/Clock";
 
@@ -17,49 +18,55 @@ const App: React.FC = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <Container style={{ marginTop: 20 }}>
+      <Header as="h1">Create a Countdown</Header>
+      <Form onSubmit={handleSubmit}>
+        <Form.Field>
           <label htmlFor="hours">Hours</label>
-          <input
+          <Form.Input
             type="number"
             name="hours"
-            min="0"
             value={hours}
             onChange={e => setHours(Number(e.target.value))}
           />
-        </div>
+        </Form.Field>
         <div>
           <label htmlFor="minutes">Minutes</label>
-          <input
+          <Form.Input
             type="number"
             name="minutes"
-            min="0"
             value={minutes}
             onChange={e => setMinutes(Number(e.target.value))}
           />
         </div>
         <div>
           <label htmlFor="seconds">Seconds</label>
-          <input
+          <Form.Input
             type="number"
             name="seconds"
-            min="0"
             value={seconds}
             onChange={e => setSeconds(Number(e.target.value))}
           />
         </div>
 
-        <button type="submit">Start Countdown</button>
-      </form>
+        <Button type="submit" style={{ marginTop: 20 }}>
+          Start Countdown
+        </Button>
+      </Form>
 
       {duration ? (
-        <>
-          <Clock duration={duration} />
-          <button onClick={() => setDuration(null)}>Cancel</button>
-        </>
+        <Container style={{ marginTop: 20 }}>
+          <Clock
+            duration={duration}
+            onComplete={() => {
+              alert("Countdown Complete");
+              setDuration(null);
+            }}
+          />
+          <Button onClick={() => setDuration(null)}>Cancel</Button>
+        </Container>
       ) : null}
-    </div>
+    </Container>
   );
 };
 

@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import parseMs from "parse-ms";
 import { padParsedMsValues } from "../utils/pad-parsed-ms-values";
+import { Container } from "semantic-ui-react";
 
 /**
  * Custom hook that kicks off a side effect to count down for the given duration
@@ -38,21 +39,18 @@ function useCountdown(
 
 interface ClockProps {
   duration: number;
+  onComplete: () => void;
 }
 
-export const Clock: React.FC<ClockProps> = ({ duration }) => {
-  const onCountdownComplete = useCallback(() => {
-    alert("Countdown Completed");
-  }, []);
-
-  const remaining = useCountdown(duration, 100, onCountdownComplete);
+export const Clock: React.FC<ClockProps> = ({ duration, onComplete }) => {
+  const remaining = useCountdown(duration, 100, onComplete);
 
   const parsed = parseMs(remaining);
   const padded = padParsedMsValues(parsed);
 
   return (
-    <div>
+    <Container>
       {padded.hours}:{padded.minutes}:{padded.seconds}:{padded.milliseconds}
-    </div>
+    </Container>
   );
 };
