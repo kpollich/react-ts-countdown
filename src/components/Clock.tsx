@@ -42,7 +42,10 @@ interface ClockProps {
   onComplete: () => void;
 }
 
-export const Clock: React.FC<ClockProps> = ({ duration, onComplete }) => {
+export const Clock: React.FunctionComponent<ClockProps> = ({
+  duration,
+  onComplete
+}) => {
   const remaining = useCountdown(duration, 100, onComplete);
 
   const parsed = parseMs(remaining);

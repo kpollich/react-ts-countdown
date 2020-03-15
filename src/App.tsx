@@ -4,7 +4,7 @@ import { Form, Container, Header, Button } from "semantic-ui-react";
 
 import { Clock } from "./components/Clock";
 
-const App: React.FC = () => {
+const App: React.FunctionComponent = () => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
